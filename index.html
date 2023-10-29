@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário com Validação de E-mail</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    textarea {
+      resize: vertical; /* Permite redimensionar verticalmente */
+    }
+
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .error-message {
+      color: red;
+    }
+
+    #erroGeral {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div id="erroGeral"></div>
+
+<form id="meuFormulario" onsubmit="return validarFormulario()">
+  <label for="email">E-mail:</label>
+  <input type="email" id="email" name="email" required>
+  <span id="erroEmail" class="error-message"></span>
+
+  <label for="mensagem">Mensagem:</label>
+  <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+  <span id="erroMensagem" class="error-message"></span>
+
+  <input type="submit" value="Enviar">
+</form>
+
+<script>
+  function validarFormulario() {
+    var email = document.getElementById('email').value;
+    var mensagem = document.getElementById('mensagem').value;
+    var erroEmail = document.getElementById('erroEmail');
+    var erroMensagem = document.getElementById('erroMensagem');
+    var erroGeral = document.getElementById('erroGeral');
+
+    // Expressão regular para validar o formato do e-mail
+    var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!regexEmail.test(email)) {
+      erroEmail.innerHTML = 'Por favor, insira um e-mail válido.';
+      erroGeral.innerHTML = 'Certifique-se de preencher todos os campos corretamente.';
+      return false; // Impede o envio do formulário se o e-mail for inválido
+    } else {
+      erroEmail.innerHTML = ''; // Limpa a mensagem de erro se o e-mail for válido
+    }
+
+    if (mensagem.trim() === '') {
+      erroMensagem.innerHTML = 'Por favor, insira uma mensagem.';
+      erroGeral.innerHTML = 'Certifique-se de preencher todos os campos corretamente.';
+      return false; // Impede o envio do formulário se a mensagem estiver em branco
+    } else {
+      erroMensagem.innerHTML = ''; // Limpa a mensagem de erro se a mensagem estiver preenchida
+    }
+
+    erroGeral.innerHTML = ''; // Limpa a mensagem de erro geral se todos os campos estiverem válidos
+    return true; // Permite o envio do formulário se ambos os campos estiverem válidos
+  }
+</script>
+
+</body>
+</html>
+
+
+<script>
+  function validarFormulario() {
+    var email = document.getElementById('email').value;
+    var mensagem = document.getElementById('mensagem').value;
+    var erroEmail = document.getElementById('erroEmail');
+    var erroMensagem = document.getElementById('erroMensagem');
+
+    // Expressão regular para validar o formato do e-mail
+    var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!regexEmail.test(email)) {
+      erroEmail.innerHTML = 'Por favor, insira um e-mail válido.';
+      return false; // Impede o envio do formulário se o e-mail for inválido
+    } else {
+      erroEmail.innerHTML = ''; // Limpa a mensagem de erro se o e-mail for válido
+    }
+
+    if (mensagem.trim() === '') {
+      erroMensagem.innerHTML = 'Por favor, insira uma mensagem.';
+      return false; // Impede o envio do formulário se a mensagem estiver em branco
+    } else {
+      erroMensagem.innerHTML = ''; // Limpa a mensagem de erro se a mensagem estiver preenchida
+    }
+
+    return true; // Permite o envio do formulário se ambos os campos estiverem válidos
+  }
+</script>
+
+</body>
+</html>
